@@ -1,7 +1,7 @@
 import { Box, Tabs, Text } from "@radix-ui/themes";
 import React from "react";
 import { NavBar } from "../components/NavBar";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 export const PublicPackageDetails: React.FC = () => {
   // Get the Package ID and Version from the URL path /package/:id/:version
@@ -10,6 +10,19 @@ export const PublicPackageDetails: React.FC = () => {
     version: string;
   }>();
 
+  // Placeholder metadata object
+  const packageMeta = {
+    about: "A short description about this package.",
+    updated: "about 1 month ago",
+    version: packageVersion,
+    license: "MIT OR Apache-2.0",
+    size: "292 KiB",
+    documentation: "https://docs.rs/syn/2.0.101",
+    repository: "https://github.com/dtolnay/syn",
+    owners: ["David Tolnay (dtolnay)", "David Tolnay"],
+    categories: ["Procedural macro helpers", "Parser implementations"],
+  };
+  
   return (
     <>
       <NavBar />
@@ -59,19 +72,23 @@ export const PublicPackageDetails: React.FC = () => {
             }}
           >
             <Text as="div" size="4" weight="bold" style={{ marginBottom: 8 }}>
-              Metadata Details
+              Metadata
             </Text>
             <Text as="p" size="2" color="gray" style={{ marginBottom: 8 }}>
-              Details about the package will be displayed here.
+              {packageMeta.updated}
             </Text>
             <Text as="p" size="2" style={{ marginBottom: 4 }}>
-              {packageId}
+              v{packageMeta.version}
             </Text>
-            <Text as="p" size="2" style={{ marginBottom: 12 }}>
-              {packageVersion}
+            <Text as="p" size="2" style={{ marginBottom: 4 }}>
+              {packageMeta.license}
             </Text>
+            <Text as="p" size="2" style={{ marginBottom: 8 }}>
+              {packageMeta.size}
+            </Text>
+
             <Text
-              as="h3"
+              as="div"
               size="3"
               weight="bold"
               style={{ marginTop: 16, marginBottom: 4 }}
@@ -96,6 +113,90 @@ export const PublicPackageDetails: React.FC = () => {
               <code>
                 nikl install {packageId}@{packageVersion}
               </code>
+            </Box>
+
+            <Text
+              as="div"
+              size="3"
+              weight="bold"
+              style={{ marginTop: 16, marginBottom: 4 }}
+            >
+              Documentation
+            </Text>
+            <Text as="p" size="2" style={{ marginBottom: 4 }}>
+              <a href={packageMeta.documentation} target="_blank" rel="noopener noreferrer">
+                {packageMeta.documentation.replace(/^https?:\/\//, "")}
+              </a>
+            </Text>
+
+            <Text
+              as="div"
+              size="3"
+              weight="bold"
+              style={{ marginTop: 16, marginBottom: 4 }}
+            >
+              Repository
+            </Text>
+            <Text as="p" size="2" style={{ marginBottom: 4 }}>
+              <a href={packageMeta.repository} target="_blank">
+                {packageMeta.repository.replace(/^https?:\/\//, "")}
+              </a>
+            </Text>
+
+            <Text
+              as="div"
+              size="3"
+              weight="bold"
+              style={{ marginTop: 16, marginBottom: 4 }}
+            >
+              Owners
+            </Text>
+            {packageMeta.owners.map((owner, idx) => (
+              <Text as="p" size="2" key={idx} style={{ marginBottom: 2 }}>
+                {owner}
+              </Text>
+            ))}
+
+            <Text
+              as="div"
+              size="3"
+              weight="bold"
+              style={{ marginTop: 16, marginBottom: 4 }}
+            >
+              Categories
+            </Text>
+            {packageMeta.categories.map((cat, idx) => (
+              <Text as="p" size="2" key={idx} style={{ marginBottom: 2 }}>
+                {cat}
+              </Text>
+            ))}
+
+            <Box mt="4">
+              <a
+                href="#"
+                style={{
+                  display: "block",
+                  marginBottom: 4,
+                  color: "var(--accent-9, #2563eb)",
+                  fontSize: "14px",
+                  textDecoration: "none",
+                  fontWeight: 400,
+                }}
+              >
+                Try on Playground
+              </a>
+              <a
+                href="#"
+                style={{
+                  display: "block",
+                  color: "var(--accent-9, #2563eb)",
+                  fontSize: "14px",
+                  textDecoration: "none",
+                  fontWeight: 400,
+                }}
+              >
+                Report crate
+              </a>
             </Box>
           </Box>
         </Box>
