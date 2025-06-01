@@ -8,6 +8,8 @@ import type { Dependency } from './types';
 
 export const fetchPackageDependencies = async (packageId: string, version: string): Promise<Dependency[]> => {
   // TODO: Replace with actual API call
+  console.log(`Fetching dependencies for package ${packageId} version ${version}`);
+
   return [
     {
       name: "proc-macro2",
