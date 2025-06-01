@@ -2,6 +2,7 @@ import { Box, Tabs, Text } from "@radix-ui/themes";
 import React from "react";
 import { NavBar } from "../components/NavBar";
 import { Link, useParams } from "react-router-dom";
+import { DependenciesList } from "../components/DependenciesList";
 
 export const PublicPackageDetails: React.FC = () => {
   // Get the Package ID and Version from the URL path /package/:id/:version
@@ -57,9 +58,7 @@ export const PublicPackageDetails: React.FC = () => {
                   <Text size="2">List of versions for this package</Text>
                 </Tabs.Content>
                 <Tabs.Content value="dependencies">
-                  <Text size="2">
-                    Dependencies for this package will be listed here
-                  </Text>
+                  <DependenciesList packageId={packageId || ''} version={packageVersion || ''} />
                 </Tabs.Content>
               </Box>
             </Tabs.Root>
