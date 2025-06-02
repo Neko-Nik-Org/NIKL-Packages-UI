@@ -1,7 +1,7 @@
 import { Box, Tabs, Text } from "@radix-ui/themes";
 import React from "react";
 import { NavBar } from "../components/NavBar";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { DependenciesList } from "../components/DependenciesList";
 
 export const PublicPackageDetails: React.FC = () => {
