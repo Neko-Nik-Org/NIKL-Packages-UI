@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Table, Text, Badge } from '@radix-ui/themes';
-import { fetchPackageDependencies } from '../api/packages';
-
 import type { Dependency } from '../api/types';
+import { fetchPackageDependencies } from '../api/packageApi';
 
 interface DependenciesListProps {
   packageId: string;
   version: string;
 }
-
 
 export const DependenciesList: React.FC<DependenciesListProps> = ({ packageId, version }) => {
   const [dependencies, setDependencies] = useState<Dependency[]>([]);
@@ -106,3 +104,5 @@ export const DependenciesList: React.FC<DependenciesListProps> = ({ packageId, v
     </Box>
   );
 };
+
+
