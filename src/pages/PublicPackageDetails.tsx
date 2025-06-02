@@ -8,6 +8,7 @@ import { fetchPackageReadme } from "../api/packageApi";
 import type { PackageReadme } from "../api/types";
 import { MarkdownRenderer } from "../components/MarkdownRenderer";
 
+
 export const PublicPackageDetails: React.FC = () => {
   // Get the Package ID and Version from the URL path /package/:id/:version
   const { id: packageId, version: packageVersion } = useParams<{
