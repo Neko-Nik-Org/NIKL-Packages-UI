@@ -7,6 +7,7 @@ import { fetchPackageReadme } from "../api/packageApi";
 import type { PackageReadme } from "../api/types";
 import { MarkdownRenderer } from "../components/MarkdownRenderer";
 
+
 export const PublicPackageDetails: React.FC = () => {
   // Get the Package ID and Version from the URL path /package/:id/:version
   const { id: packageId, version: packageVersion } = useParams<{
@@ -76,6 +77,7 @@ export const PublicPackageDetails: React.FC = () => {
               </Tabs.List>
               <Box pt="3">
                 <Tabs.Content value="readme">
+
                   {isLoading ? (
                     <Box p="4" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '150px' }}>
                       <Text size="2">Loading readme content...</Text>
@@ -89,6 +91,7 @@ export const PublicPackageDetails: React.FC = () => {
                       <Text size="2">No readme available for this package.</Text>
                     </Box>
                   )}
+
                 </Tabs.Content>
                 <Tabs.Content value="versions">
                   <Text size="2">List of versions for this package</Text>
