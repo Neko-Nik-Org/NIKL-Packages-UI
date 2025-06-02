@@ -11,3 +11,8 @@ export interface PackageDetails {
   version: string;
   dependencies: Dependency[];
 }
+
+export interface PackageReadme {
+  content: string;
+  format: 'markdown';
+}
