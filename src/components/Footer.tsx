@@ -7,8 +7,7 @@ export function Footer() {
       py="6"
       style={{
         backgroundColor: '#f9fafb',
-        borderTop: '1px solid #e5e7eb',
-        marginTop: '100px',
+        borderTop: '1px solid #e5e7eb'
       }}
     >
       <Grid
