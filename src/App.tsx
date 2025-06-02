@@ -14,7 +14,7 @@ import Settings from './pages/Settings';
 import PublicPackageDetails from './pages/PublicPackageDetails';
 import ForgotPassword from './pages/ForgotPassword';
 import { Flex } from '@radix-ui/themes';
-import { Footer } from './components/Footer';
+import { Footer } from "./components/Footer";
 
 function App() {
   const csrfTokenValue = useAtomValue(csrfToken);
