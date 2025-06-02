@@ -1,8 +1,12 @@
 import { Box, Tabs, Text } from "@radix-ui/themes";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { NavBar } from "../components/NavBar";
 import { useParams } from "react-router-dom";
 import { DependenciesList } from "../components/DependenciesList";
+import { PackageVersionsList } from "../components/PackageVersionsList";
+import { fetchPackageReadme } from "../api/packageApi";
+import type { PackageReadme } from "../api/types";
+import { MarkdownRenderer } from "../components/MarkdownRenderer";
 
 export const PublicPackageDetails: React.FC = () => {
   // Get the Package ID and Version from the URL path /package/:id/:version
@@ -10,6 +14,27 @@ export const PublicPackageDetails: React.FC = () => {
     id: string;
     version: string;
   }>();
+  
+  const [readme, setReadme] = useState<PackageReadme | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const loadReadme = async () => {
+      if (packageId && packageVersion) {
+        try {
+          setIsLoading(true);
+          const readmeData = await fetchPackageReadme(packageId, packageVersion);
+          setReadme(readmeData);
+        } catch (error) {
+          console.error('Error fetching readme:', error);
+        } finally {
+          setIsLoading(false);
+        }
+      }
+    };
+    
+    loadReadme();
+  }, [packageId, packageVersion]);
 
   // Placeholder metadata object
   const packageMeta = {
@@ -52,10 +77,23 @@ export const PublicPackageDetails: React.FC = () => {
               </Tabs.List>
               <Box pt="3">
                 <Tabs.Content value="readme">
-                  <Text size="2">Readme content goes here</Text>
+                  {isLoading ? (
+                    <Box p="4" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '150px' }}>
+                      <Text size="2">Loading readme content...</Text>
+                    </Box>
+                  ) : readme ? (
+                    <Box py="2">
+                      <MarkdownRenderer content={readme.content} />
+                    </Box>
+                  ) : (
+                    <Box p="4">
+                      <Text size="2">No readme available for this package.</Text>
+                    </Box>
+                  )}
                 </Tabs.Content>
                 <Tabs.Content value="versions">
                   <Text size="2">List of versions for this package</Text>
+                  <PackageVersionsList packageId={packageId} />
                 </Tabs.Content>
                 <Tabs.Content value="dependencies">
                   <DependenciesList packageId={packageId || ''} version={packageVersion || ''} />
