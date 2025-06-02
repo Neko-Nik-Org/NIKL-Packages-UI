@@ -13,7 +13,6 @@ import Profile from './pages/Profile';
 import Settings from './pages/Settings';
 import PublicPackageDetails from './pages/PublicPackageDetails';
 import ForgotPassword from './pages/ForgotPassword';
-import { Flex } from '@radix-ui/themes';
 import { Footer } from "./components/Footer";
 
 function App() {
@@ -23,9 +22,8 @@ function App() {
   const user = isSessionValidCookie ? { csrfToken: csrfTokenValue } : null;
 
   return (
-    <Flex direction="column" style={{minHeight:'100vh'}}>
+    
     <BrowserRouter>
-    <Flex direction="column" style={{flex:1}} >
       <Routes>
         {/* Public routes */}
         <Route path="/" element={<Home />} />
@@ -61,10 +59,10 @@ function App() {
         {/* Catch-all route for 404 Not Found */}
         <Route path="*" element={<NotFound />} />
       </Routes>
-      </Flex>
+      <Footer/>     
     </BrowserRouter>
-    <Footer/>
-    </Flex>
+
+    
   )
 
 }

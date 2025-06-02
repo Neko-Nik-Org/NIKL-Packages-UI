@@ -7,7 +7,11 @@ export function Footer() {
       py="6"
       style={{
         backgroundColor: '#f9fafb',
-        borderTop: '1px solid #e5e7eb'
+        borderTop: '1px solid #e5e7eb',
+        left: 0,      
+        bottom: 0,    
+        width: '100%',     
+
       }}
     >
       <Grid
@@ -37,29 +41,29 @@ export function Footer() {
       <Separator size="4" my="4" />
 
       <Flex
-        justify="between"
-        direction={{ initial: 'column', sm: 'row' }}
-        align="center"
-        gap="2"
-      >
-        <Text size="1" color="gray">
-          © 2025 Nik-Lang. All rights reserved.
-        </Text>
-        <Flex align="center" gap="2">
-            <Text size="1" color="gray">
-                Status: <Link href="#" color="blue">All Systems Operational</Link>
-            </Text>
-            <Box
-                style={{
-                width: '8px',
-                height: '8px',
-                backgroundColor: 'green',
-                borderRadius: '50%',
-                }}
-            />
-            </Flex>
+  justify="between"
+  direction={{ initial: 'column', sm: 'row' }}
+  align="center"
+  gap="2"
+>
+  <Text size="1" color="gray">
+    © 2025 Nik-Lang. All rights reserved.
+  </Text>
+  <Flex align="center" gap="2">
+    <Text size="1" color="gray">
+      Status: <Link href="#" color="blue">All Systems Operational</Link>
+    </Text>
+    <Box
+      style={{
+        width: '8px',
+        height: '8px',
+        backgroundColor: 'green',
+        borderRadius: '50%',
+      }}
+    />
+  </Flex>
+</Flex>
 
-      </Flex>
     </Box>
   );
 }
