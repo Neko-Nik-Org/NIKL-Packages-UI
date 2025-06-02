@@ -1,7 +1,7 @@
-import { Dependency } from './types';
+import type { Dependency, PackageReadme } from './types';
 
-export const fetchPackageDependencies = async (packageId: string, version: string): Promise<Dependency[]> => {
-  // TODO: Replace with actual API call
+export const fetchPackageDependencies = async (_packageId: string, _version: string): Promise<Dependency[]> => {
+  // TODO: Replace with actual API call using packageId and version
   return [
     {
       name: "proc-macro2",
@@ -22,4 +22,62 @@ export const fetchPackageDependencies = async (packageId: string, version: strin
       features: ["OPTIONAL", "NO DEFAULT FEATURES"]
     }
   ];
+};
+
+export const fetchPackageReadme = async (packageId: string, version: string): Promise<PackageReadme> => {
+  // TODO: Replace with actual API call that fetches README from backend
+  try {
+    // Simulate network delay
+    await new Promise(resolve => setTimeout(resolve, 500));
+    
+    return {
+      content: `# ${packageId} v${version}
+
+This is a sample readme for demonstration purposes.
+
+## Features
+
+- **Feature 1**: Markdown rendering with code highlighting
+- **Feature 2**: Support for tables, lists, and other formatting
+- **Feature 3**: Compatible with GitHub Flavored Markdown
+
+## Installation
+
+\`\`\`bash
+nikl install ${packageId}@${version}
+\`\`\`
+
+## Usage Example
+
+\`\`\`javascript
+import { example } from '${packageId}';
+
+// Initialize the package
+const instance = example.create({
+  debug: true,
+  version: '${version}'
+});
+
+// Use the package features
+instance.doSomethingAwesome();
+\`\`\`
+
+## API Reference
+
+| Method | Description | Returns |
+|--------|-------------|---------|
+| create(options) | Creates a new instance | Object |
+| doSomethingAwesome() | Does something awesome | void |
+| getResults() | Retrieves results | Array |
+
+> **Note**: This is a demo readme to showcase markdown rendering capabilities.
+
+You can learn more about using this package at our [documentation](https://example.com/docs).
+`,
+      format: 'markdown',
+    };
+  } catch (error) {
+    console.error('Error fetching readme:', error);
+    throw new Error('Failed to fetch readme');
+  }
 };
