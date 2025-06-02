@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Box, Table, Text, Badge } from '@radix-ui/themes';
-import { Dependency } from '../api/types';
+import type { Dependency } from '../api/types';
 import { fetchPackageDependencies } from '../api/packageApi';
 
 interface DependenciesListProps {
