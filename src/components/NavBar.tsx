@@ -1,4 +1,4 @@
-import { Box, Flex, Text, Link, Button } from '@radix-ui/themes';
+import { Box, Flex, Text, Link, Button, Avatar } from '@radix-ui/themes';
 import NikLPkgMgrLogo from '/nikl-pkg.svg'
 import { csrfToken, userDetails } from '../state/Auth';
 import { useAtomValue, useSetAtom } from 'jotai';
@@ -17,6 +17,7 @@ export function NavBar() {
   
   const isSessionValidCookie = document.cookie.includes('IS_SESSION_VALID');
   const user = isSessionValidCookie ? { csrfToken: csrfTokenValue } : null;
+  // const user = true; // For testing purposes, assume user is always logged in
 
   const DisplayNavButton = ({ name, href }: NavButtonProps) => (
     <Link href={href} underline="none" weight="medium" color="gray">
@@ -63,6 +64,11 @@ export function NavBar() {
               <DisplayNavButton name="Packages" href="/manage/packages" />
               <DisplayNavButton name="Profile" href="/manage/profile" />
               <DisplayNavButton name="Settings" href="/manage/settings" />
+              <Avatar
+                src={userDetailsValue?.profilePicture || ''}
+                alt={userDetailsValue?.username || 'User Avatar'}
+                fallback="A"
+              />
               <Button
                 color="red"
                 onClick={handleLogout}
