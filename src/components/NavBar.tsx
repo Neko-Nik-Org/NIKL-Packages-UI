@@ -1,4 +1,4 @@
-import { Box, Flex, Text, Link, Button, Avatar } from '@radix-ui/themes';
+import { Box, Flex, Text, Link, Button, Avatar, DropdownMenu } from '@radix-ui/themes';
 import NikLPkgMgrLogo from '/nikl-pkg.svg'
 import { csrfToken, userDetails } from '../state/Auth';
 import { useAtomValue, useSetAtom } from 'jotai';
@@ -60,21 +60,43 @@ export function NavBar() {
           <DisplayNavButton name="Search" href="/search" />
           {user ? (
             <>
-              <DisplayNavButton name="Dashboard" href="/manage/dashboard" />
-              <DisplayNavButton name="Packages" href="/manage/packages" />
-              <DisplayNavButton name="Profile" href="/manage/profile" />
-              <DisplayNavButton name="Settings" href="/manage/settings" />
-              <Avatar
-                src={userDetailsValue?.profilePicture || ''}
-                alt={userDetailsValue?.username || 'User Avatar'}
-                fallback="A"
-              />
-              <Button
-                color="red"
-                onClick={handleLogout}
-              >
-                Logout
-              </Button>
+              <DropdownMenu.Root>
+                <DropdownMenu.Trigger>
+                  <Flex align="center" gap="2" style={{ cursor: 'pointer' }}>
+                    <Avatar
+                      src={userDetailsValue?.profilePicture || ''}
+                      alt={userDetailsValue?.username || 'User Avatar'}
+                      fallback="A"
+                    />
+                  </Flex>
+                </DropdownMenu.Trigger>
+                <DropdownMenu.Content style={{ minWidth: '200px' }}>
+                  <DropdownMenu.Label>
+                    <Flex align="center" gap="2">
+                      <Text as="span" weight="bold" size="3" color="gray">
+                        {userDetailsValue?.username || 'User'}
+                      </Text>
+                    </Flex>
+                  </DropdownMenu.Label>
+                  <DropdownMenu.Separator />
+                  <DropdownMenu.Item asChild>
+                    <Link href="/manage/dashboard">Dashboard</Link>
+                  </DropdownMenu.Item>
+                  <DropdownMenu.Item asChild>
+                    <Link href="/manage/packages">Packages</Link>
+                  </DropdownMenu.Item>
+                  <DropdownMenu.Item asChild>
+                    <Link href="/manage/profile">Profile</Link>
+                  </DropdownMenu.Item>
+                  <DropdownMenu.Item asChild>
+                    <Link href="/manage/settings">Settings</Link>
+                  </DropdownMenu.Item>
+                  <DropdownMenu.Separator />
+                  <DropdownMenu.Item onClick={handleLogout} color="red">
+                    Logout
+                  </DropdownMenu.Item>
+                </DropdownMenu.Content>
+              </DropdownMenu.Root>
             </>
           ) : (
             <>
