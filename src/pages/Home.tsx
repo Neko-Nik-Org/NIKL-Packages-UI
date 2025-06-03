@@ -146,14 +146,17 @@ function Home() {
           <Text size="3" color="gray" style={{ marginBottom: '24px', maxWidth: '600px' }}>
             Explore the documentation, try the examples, and join our community.
           </Text>
-          <Button
-  size="3"
-  variant="solid"
-  onClick={() => navigate('/search')}
+          <a
+  href="https://nikl.nekonik.com/"
+  target="_blank"
+  rel="noopener noreferrer"
+  style={{ textDecoration: 'none' }}
 >
-  Start Exploring
-  <ArrowRightIcon width="16" height="16" />
-</Button>
+  <Button size="3" variant="solid">
+    Start Exploring
+    <ArrowRightIcon width="16" height="16" />
+  </Button>
+</a>
         </Flex>
       </Box>
     </Box>
