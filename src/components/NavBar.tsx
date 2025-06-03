@@ -1,4 +1,4 @@
-import { Box, Flex, Text, Link, Button, Avatar, DropdownMenu } from '@radix-ui/themes';
+import { Box, Flex, Text, Link, Avatar, DropdownMenu } from '@radix-ui/themes';
 import NikLPkgMgrLogo from '/nikl-pkg.svg'
 import { csrfToken, userDetails } from '../state/Auth';
 import { useAtomValue, useSetAtom } from 'jotai';
