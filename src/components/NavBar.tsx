@@ -1,7 +1,8 @@
 import { Box, Flex, Text, Link, Button } from '@radix-ui/themes';
 import NikLPkgMgrLogo from '/nikl-pkg.svg'
-import { csrfToken } from '../state/Auth';
+import { csrfToken, userDetails } from '../state/Auth';
 import { useAtomValue, useSetAtom } from 'jotai';
+import { logoutUser } from '../api/users';
 
 
 type NavButtonProps = {
@@ -11,6 +12,7 @@ type NavButtonProps = {
 
 export function NavBar() {
   const csrfTokenValue = useAtomValue(csrfToken);
+  const userDetailsValue = useAtomValue(userDetails);
   const setCsrfToken = useSetAtom(csrfToken);
   
   const isSessionValidCookie = document.cookie.includes('IS_SESSION_VALID');
@@ -21,6 +23,16 @@ export function NavBar() {
       {name}
     </Link>
   );
+
+  const handleLogout = async () => {
+    try {
+      await logoutUser(csrfTokenValue || '');
+      setCsrfToken('');
+      window.location.href = '/';
+    } catch (error) {
+      console.error('Logout failed:', error);
+    }
+  }
 
   return (
     <Box
@@ -53,10 +65,7 @@ export function NavBar() {
               <DisplayNavButton name="Settings" href="/manage/settings" />
               <Button
                 color="red"
-                onClick={() => {
-                  setCsrfToken('');
-                  window.location.href = '/';
-                }}
+                onClick={handleLogout}
               >
                 Logout
               </Button>

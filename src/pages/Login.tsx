@@ -23,7 +23,7 @@ export const Login: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [hcaptchaToken, setHcaptchaToken] = useState("");
+  const [hcaptchaToken, setHcaptchaToken] = useState("cats");
   const hcaptchaRef = useRef<any>(null);
 
   const handleLogin = async () => {
@@ -42,7 +42,7 @@ export const Login: React.FC = () => {
       console.log("Raw JSON response:", response_headers);
       setCsrfToken(response_headers["x-csrf-token"] || "");
 
-      const user_details = await getUserDetails();
+      const user_details = await getUserDetails(response_headers["x-csrf-token"] || "");
       console.log("User details:", user_details);
 
       setUserDetails({
