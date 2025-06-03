@@ -66,7 +66,7 @@ export function NavBar() {
                     <Avatar
                       src={userDetailsValue?.profilePicture || ''}
                       alt={userDetailsValue?.username || 'User Avatar'}
-                      fallback="A"
+                      fallback={userDetailsValue?.username?.charAt(0) || '.'}
                     />
                   </Flex>
                 </DropdownMenu.Trigger>
