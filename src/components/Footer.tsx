@@ -4,12 +4,12 @@ import { ExternalLinkIcon } from '@radix-ui/react-icons'
 
 const statusColor = {
   operational: 'var(--green-9)',
-  degraded: 'var(--yellow-9)',
+  ExperincingHighLoad: 'var(--yellow-9)',
   down: 'var(--red-9)',
 }
 
 const Footer = () => {
-  const systemStatus = 'operational' // mock status
+  const systemStatus = 'down' // mock status
 
   return (
     <Box
@@ -18,6 +18,7 @@ const Footer = () => {
         color: 'var(--gray-12)',
         padding: '48px 24px 24px',
         margin: '10px 0', 
+        width:"100%"
       }}
     >
       <Grid
@@ -97,7 +98,7 @@ const Footer = () => {
             <Text size="2">
             Status:{' '}
             <Link href="#" underline="always" color="blue">
-                All Systems Operational
+                {systemStatus}
             </Link>
             </Text>
         </Flex>
@@ -105,7 +106,7 @@ const Footer = () => {
 
         <Flex justify="center" style={{ marginTop: '12px', margin: '10px 0' }}> 
         <Text size="1" color="gray" style={{ textAlign: 'center' }}>
-            &copy; 2025 NIKL Project. All rights reserved.
+            &copy; 2025 NIKL-Lang Package Manager. All rights reserved.
         </Text>
         </Flex>
 
