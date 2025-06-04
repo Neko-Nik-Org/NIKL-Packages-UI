@@ -13,11 +13,11 @@ const Footer = () => {
 
   return (
     <Box
-      as="footer"
       style={{
-        background: '#f9fcfe', // lighter solid background
+        background: 'var(--gray-1)', // milder background color
         color: 'var(--gray-12)',
         padding: '48px 24px 24px',
+        margin: '10px 0', 
       }}
     >
       <Grid
@@ -70,34 +70,46 @@ const Footer = () => {
 
       <Separator my="5" size="4" />
 
-      <Flex direction="column" align="center" gap="2">
+
+        <Flex
+        justify="between"
+        align="center"
+        style={{ flexWrap: 'wrap', gap: '12px', width: '100%', margin: '10px 0' }} 
+        >
+        {/* Bottom Left */}
+        <Text size="2" style={{ textAlign: 'left' }}>
+            Developed by the NIKL community.{' '}
+            <Link href="#" underline="always">
+            Donate
+            </Link>
+        </Text>
+
+        {/* Bottom Right */}
         <Flex align="center" gap="2">
-          <Box
+            <Box
             style={{
-              width: 10,
-              height: 10,
-              borderRadius: '50%',
-              backgroundColor: statusColor[systemStatus],
+                width: 10,
+                height: 10,
+                borderRadius: '50%',
+                backgroundColor: statusColor[systemStatus],
             }}
-          />
-          <Text size="2">
+            />
+            <Text size="2">
             Status:{' '}
             <Link href="#" underline="always" color="blue">
-              All Systems Operational
+                All Systems Operational
             </Link>
-          </Text>
+            </Text>
         </Flex>
-        <Text size="2" style={{ textAlign: 'center' }}>
-          Developed by the NIKL community.{' '}
-          <Link href="#" underline="always">
-            Donate
-          </Link>
-        </Text>
+        </Flex>
+
+        <Flex justify="center" style={{ marginTop: '12px', margin: '10px 0' }}> 
         <Text size="1" color="gray" style={{ textAlign: 'center' }}>
-          &copy; 2025 NIKL Project. All rights reserved.
+            &copy; 2025 NIKL Project. All rights reserved.
         </Text>
-      </Flex>
-    </Box>
+        </Flex>
+
+            </Box>
   )
 }
 
