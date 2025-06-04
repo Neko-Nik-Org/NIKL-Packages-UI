@@ -1,4 +1,4 @@
-import React from 'react'
+
 import { Box, Grid, Flex, Text, Link, Separator } from '@radix-ui/themes'
 import { ExternalLinkIcon } from '@radix-ui/react-icons'
 
