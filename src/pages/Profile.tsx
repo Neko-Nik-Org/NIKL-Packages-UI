@@ -8,7 +8,7 @@ import {
   TextField,
   Button,
 } from "@radix-ui/themes";
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import { NavBar } from "../components/NavBar";
 import { useAtomValue, useSetAtom } from "jotai";
 import { userDetails } from "../state/Auth";
