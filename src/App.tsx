@@ -19,8 +19,8 @@ function App() {
   const csrfTokenValue = useAtomValue(csrfToken);
   const isSessionValidCookie = document.cookie.includes('IS_SESSION_VALID');
 
-  //const user = isSessionValidCookie ? { csrfToken: csrfTokenValue } : null;
-  const user = true;
+  const user = isSessionValidCookie ? { csrfToken: csrfTokenValue } : null;
+ 
   return (
     <BrowserRouter>
       <Routes>
