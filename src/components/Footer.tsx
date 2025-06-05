@@ -9,7 +9,7 @@ const statusColor = {
 }
 
 const Footer = () => {
-  const systemStatus = 'down' // mock status
+  const systemStatus = 'up' // mock status
 
   return (
     <Box
@@ -79,8 +79,8 @@ const Footer = () => {
         >
         {/* Bottom Left */}
         <Text size="2" style={{ textAlign: 'left' }}>
-            Developed by the NIKL community.{' '}
-            <Link href="#" underline="always">
+            Developed by the Neko Nik's community.{' '}
+            <Link href="https://github.com/sponsors/Neko-Nik" underline="always">
             Donate
             </Link>
         </Text>
@@ -106,11 +106,10 @@ const Footer = () => {
 
         <Flex justify="center" style={{ marginTop: '12px', margin: '10px 0' }}> 
         <Text size="1" color="gray" style={{ textAlign: 'center' }}>
-            &copy; 2025 NIKL-Lang Package Manager. All rights reserved.
+            &copy; 2025 Neko Nik. All rights reserved.
         </Text>
         </Flex>
-
-            </Box>
+      </Box>
   )
 }
 
